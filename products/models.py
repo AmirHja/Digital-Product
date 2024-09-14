@@ -44,11 +44,19 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-
 class File(models.Model):
+    class FileType(models.TextChoices):
+        IMAGE = "image", _("Image")
+        VIDEO = "video", _("Video")
+        AUDIO = "audio", _("Audio")
+        TEXT = "text", _("Text")
+        OTHER = "other", _("Other")
+
     products = models.ForeignKey(verbose_name=_('products'), to='Product',
                                  on_delete=models.CASCADE, related_name="files")
     title = models.CharField(verbose_name=_('title'), max_length=50)
+    file_type = models.CharField(verbose_name=_('file type'),max_length=5,
+                                 choices=FileType.choices,default=FileType.TEXT)
     file = models.FileField(verbose_name=_('file'), upload_to='file/%Y/%m/%d/')
     is_enable = models.BooleanField(verbose_name=_('is enable'), default=True)
     created_time = models.DateTimeField(verbose_name=_('created time'), auto_now_add=True)

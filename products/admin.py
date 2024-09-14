@@ -14,7 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class FileInLineAdmin(admin.StackedInline):
     model = File
-    fields = ['file', 'title', 'is_enable']
+    fields = ['title','file_type', 'file', 'is_enable']
     extra = 0
 
 
