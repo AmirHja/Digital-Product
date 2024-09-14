@@ -25,10 +25,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    categories = models.ManyToManyField(verbose_name=_('categories'), to='Category',
-                                        blank=True, related_name='products')
     title = models.CharField(verbose_name=_('title'), max_length=50)
     description = models.TextField(verbose_name=_('description'), blank=True)
+    categories = models.ManyToManyField(verbose_name=_('categories'), to='Category',
+                                        blank=True, related_name='products')
     avatar = models.ImageField(verbose_name=_('avatar'), blank=True, null=True, upload_to="products/")
     is_enable = models.BooleanField(verbose_name=_('is enable'), default=True)
     created_time = models.DateTimeField(verbose_name=_('created time'), auto_now_add=True)
@@ -37,7 +37,7 @@ class Product(models.Model):
     class Meta:
         db_table = 'products'
         verbose_name = _('product')
-        verbose_name_plural = _("'products'")
+        verbose_name_plural = _('products')
         ordering = ('-created_time',)
         indexes = [models.Index(fields=['title', '-created_time'])]
 
@@ -57,9 +57,10 @@ class File(models.Model):
     class Meta:
         db_table = 'files'
         verbose_name = _('file')
-        verbose_name_plural = _("'files'")
+        verbose_name_plural = _('files')
         ordering = ('-created_time',)
         indexes = [models.Index(fields=['title', '-created_time'])]
 
     def __str__(self):
         return self.title
+

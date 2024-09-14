@@ -4,3 +4,4 @@
 *.pyc
 media/
 db.sqlite3
+digital_product/local_settings.py
