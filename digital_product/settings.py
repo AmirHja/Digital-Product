@@ -16,7 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "products.apps.ProductsConfig"
+    "products.apps.ProductsConfig",
+    "users.apps.UsersConfig"
 ]
 
 MIDDLEWARE = [
@@ -93,3 +94,6 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authorization
+AUTH_USER_MODEL = 'users.User'
