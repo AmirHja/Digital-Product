@@ -34,6 +34,18 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def create_user(self, username=None, phone_number=None, email=None, password=None, **extra_fields):
+        if username is None:
+            if email:
+                username = email.split('@', 1)[0]
+            if phone_number:
+                username = "".join(random.sample('abcdefghijklmnopqrstuvwxyz', 4)) + str(phone_number)[-4:]
+            while User.objects.filter(username=username).exists():
+                username += str(random.randint(10, 99))
+
+        return self._create_user(username, phone_number, email, password, False, False, **extra_fields)
+
+
     def create_superuser(self, username=None, phone_number=None, email=None, password=None, **extra_fields):
         if username is None:
             if email:
