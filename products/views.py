@@ -1,21 +1,27 @@
 from pyexpat.errors import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+
 
 from products.models import *
 from products.serializers import *
 
 
 class ProductListView(APIView):
+    # permission_classes = (IsAuthenticated,)
     @staticmethod
     def get(request):
+        print(f"Request user: {request.user}")
+        print(f"Request authentication: {request.auth}")
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductDetailView(APIView):
+    permission_classes = (IsAuthenticated,)
     @staticmethod
     def get(request, pk):
         try:

@@ -34,7 +34,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     categories = CategoryNameSerializer(many=True)
 
-    files = FileSerializer(many=True)
+    # files = FileSerializer(many=True)
 
     # foo = serializers.SerializerMethodField()
 
@@ -45,7 +45,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'description',
             'avatar',
             'categories',
-            'files'
+            # 'files'
         ]
 
     # def get_foo(self, obj):
