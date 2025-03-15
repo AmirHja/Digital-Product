@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
+    "subscriptions.apps.SubscriptionsConfig",
+    "payments.apps.PaymentsConfig"
 ]
 
 MIDDLEWARE = [
